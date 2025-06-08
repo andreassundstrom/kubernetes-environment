@@ -1,0 +1,2 @@
+# The port to expose on the cluster
+nodePort: 30840
