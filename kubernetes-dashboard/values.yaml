@@ -1,0 +1,9 @@
+serviceAccountName: andreas-service-account
+serviceAccountNamespace: default
+kubernetes-dashboard:
+  app:
+    ingress:
+      enabled: true
+      hosts:
+        - kubernetes-dashboard.soundstream
+      ingressClassName: nginx

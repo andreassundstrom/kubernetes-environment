@@ -1,2 +1,11 @@
 # The port to expose on the cluster
-nodePort: 30840
+ingress-nginx:
+  controller:
+    extraArgs:
+      default-ssl-certificate: "default/my-cert"
+    service:
+      type: "NodePort"
+      external:
+        enabled: true
+      nodePorts:
+        https: 30840
