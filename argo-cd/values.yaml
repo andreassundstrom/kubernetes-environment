@@ -1,5 +1,5 @@
 global:
-  domain: argocd.soundstream
+  domain: argocd.soundstream.dev
 
 argo-cd:
   configs:
@@ -14,4 +14,10 @@ argo-cd:
         nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
       extraTls:
         - hosts:
-          - argocd.soundstream
+          - argocd.soundstream.dev
+          secretName: argocd-server-tls
+    certificate:
+      enabled: true
+      issuer:
+        kind: 'ClusterIssuer'
+        name: 'letsencrypt'

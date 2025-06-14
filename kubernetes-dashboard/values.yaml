@@ -5,5 +5,8 @@ kubernetes-dashboard:
     ingress:
       enabled: true
       hosts:
-        - kubernetes-dashboard.soundstream
+        - kubernetes-dashboard.soundstream.dev
       ingressClassName: nginx
+      issuer:
+        name: letsencrypt
+        scope: cluster
