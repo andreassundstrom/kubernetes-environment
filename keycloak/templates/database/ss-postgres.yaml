@@ -25,11 +25,13 @@ spec:
                   - name: POSTGRES_DB
                     value: {{ .Values.database.databaseName }}
                   - name: POSTGRES_USER
-                    valueFrom: secretKeyRef
+                    valueFrom: 
+                      secretKeyRef:
                         name: {{ .Values.database.secretName }}
                         key: user
                   - name: POSTGRES_PASSWORD
-                    valueFrom: secretKeyRef
+                    valueFrom:
+                      secretKeyRef:
                         name: {{ .Values.database.secretName }}
                         key: password
             volumes:
