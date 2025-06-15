@@ -1,0 +1,20 @@
+# Database configuration
+database:
+  # The name of the service for the database
+  serviceName: keycloak-postgresql-db
+  # Metadata value for app
+  appName: keycloak-postgresql-db
+  # Image name to use
+  imageName: docker.io/postgres
+  # Image tag to use
+  imageTag: 17.5
+  # Directory of database files
+  dataDirectory: "/data/pgdata"
+  # Name of the keycloak database
+  databaseName: "keycloak"
+  # Storage class for data directory
+  storageClassName: synology-iscsi-storage
+  # Size of the requested volume for data
+  storageRequestSize: 1Gi
+  # Secret containing admin user for database
+  secretName: keycloak-postgresql-db-admin-user
