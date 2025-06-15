@@ -19,3 +19,5 @@ spec:
     hostname: {{ .Values.ingress.host }}
   proxy:
     headers: xforwarded # double check your reverse proxy sets and overwrites the X-Forwarded-* headers
+  ingress:
+    enabled: false
