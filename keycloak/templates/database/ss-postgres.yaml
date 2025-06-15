@@ -5,41 +5,41 @@ metadata:
 spec:
     serviceName: {{ .Values.database.serviceName }}
     selector:
-        matchLabels:
-            app: {{ .Values.database.appName }}
+      matchLabels:
+        app: {{ .Values.database.appName }}
     replicas: 1
     template:
-        metadata:
-            labels:
-                app: {{ .Values.database.appName }}
-        spec:
-            containers:
-              - name: keycloak-postgresql-db
-                image: {{ printf "%v:%v" .Values.database.imageName .Values.database.imageTag }}
-                volumeMounts:
-                  - mountPath: /data
-                    name: cache-volume
-                env:
-                  - name: PGDATA
-                    value: {{ .Values.database.dataDirectory }}
-                  - name: POSTGRES_DB
-                    value: {{ .Values.database.databaseName }}
-                  - name: POSTGRES_USER
-                    valueFrom: 
-                      secretKeyRef:
-                        name: {{ .Values.database.secretName }}
-                        key: user
-                  - name: POSTGRES_PASSWORD
-                    valueFrom:
-                      secretKeyRef:
-                        name: {{ .Values.database.secretName }}
-                        key: password
-            volumes:
-              - name: cache-volume
-                metadata:
-                    name: keycloak-postgresql-db
-                accessModes: ["ReadWriteOnce"]
-                storageClassName: {{ .Values.database.storageClassName }}
-                resources:
-                    requests:
-                        storage: {{ .Values.database.storageRequestSize }}
+      metadata:
+        labels:
+          app: {{ .Values.database.appName }}
+      spec:
+        containers:
+        - name: keycloak-postgresql-db
+          image: {{ printf "%v:%v" .Values.database.imageName .Values.database.imageTag }}
+          volumeMounts:
+          - mountPath: /data
+            name: keycloak-postgresql-db
+          env:
+          - name: PGDATA
+            value: {{ .Values.database.dataDirectory }}
+          - name: POSTGRES_DB
+            value: {{ .Values.database.databaseName }}
+          - name: POSTGRES_USER
+            valueFrom: 
+              secretKeyRef:
+                name: {{ .Values.database.secretName }}
+                key: user
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.database.secretName }}
+                key: password
+    volumeClaimTemplate:
+    - metadata:
+        name: keycloak-postgresql-db
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: {{ .Values.database.storageClassName }}
+        resources:
+          requests:
+            storage: {{ .Values.database.storageRequestSize }}
