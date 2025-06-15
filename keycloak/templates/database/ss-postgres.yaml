@@ -34,7 +34,7 @@ spec:
               secretKeyRef:
                 name: {{ .Values.database.secretName }}
                 key: password
-    volumeClaimTemplate:
+    volumeClaimTemplates:
     - metadata:
         name: keycloak-postgresql-db
       spec:
