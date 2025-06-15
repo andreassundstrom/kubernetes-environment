@@ -6,12 +6,12 @@ spec:
   instances: 1
   db:
     vendor: postgres
-    host: {{ .Values.db.serviceName }}
+    host: {{ .Values.database.serviceName }}
     usernameSecret:
-      name: {{ .Values.db.secretName }}
+      name: {{ .Values.database.secretName }}
       key: user
     passwordSecret:
-      name: {{ .Values.db.secretName }}
+      name: {{ .Values.database.secretName }}
       key: password
   http:
     tlsSecret: {{ .Values.ingress.tlsSecretName }}
