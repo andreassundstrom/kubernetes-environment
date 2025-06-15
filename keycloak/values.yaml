@@ -26,3 +26,5 @@ ingress:
   host: keycloak.soundstream.dev
   # Tls certificate secret name
   tlsSecretName: keycloak-soundstream-dev-tls
+  # Issuer for cert-manager
+  certManagerIssuer: 'letsencrypt-staging'
