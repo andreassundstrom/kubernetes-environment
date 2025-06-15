@@ -1,3 +1,5 @@
+# The name of the keycloak instance
+keycloakInstanceName: 'keycloak'
 # Database configuration
 database:
   # The name of the service for the database

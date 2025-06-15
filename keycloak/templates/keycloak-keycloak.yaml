@@ -1,0 +1,21 @@
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: Keycloak
+metadata:
+  name: {{ .Values.keycloakInstanceName}}
+spec:
+  instances: 1
+  db:
+    vendor: postgres
+    host: {{ .Values.db.serviceName }}
+    usernameSecret:
+      name: {{ .Values.db.secretName }}
+      key: user
+    passwordSecret:
+      name: {{ .Values.db.secretName }}
+      key: password
+  http:
+    tlsSecret: {{ .Values.ingress.tlsSecretName }}
+  hostname:
+    hostname: {{ .Values.ingress.host }}
+  proxy:
+    headers: xforwarded # double check your reverse proxy sets and overwrites the X-Forwarded-* headers
