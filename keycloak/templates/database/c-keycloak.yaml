@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Certificate
+metadata:
+  name: keycloak-soundstream-dev-cert
+spec:
+  commonName: {{ .Values.ingress.host }}
+  dnsNames:
+  - {{ .Values.ingress.host }}
+  secretName: {{ .Values.ingress.tlsSecretName }}

@@ -18,3 +18,9 @@ database:
   storageRequestSize: 1Gi
   # Secret containing admin user for database
   secretName: keycloak-postgresql-db-admin-user
+# Values related to ingress
+ingress:
+  # Host name for the ingress
+  host: keycloak.soundstream.dev
+  # Tls certificate secret name
+  tlsSecretName: keycloak-soundstream-dev-tls
