@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.certManagerIssuer }}
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - {{ .Values.grafana.ingress.host }}
+    secretName: {{ .Values.grafana.ingress.tlsSecretName }}
+  rules:
+  - host: {{ .Values.grafana.ingress.host }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.grafana.ingress.service }}
+            port:
+              number: 80
