@@ -5,6 +5,16 @@ grafana:
     service:  prometheus-grafana
 certManagerIssuer: 'letsencrypt'
 kube-prometheus-stack:
+  grafana:
+    persistence:
+      enabled: true
+      type: sts
+      storageClassName: synology-iscsi-storage
+      accessModes:
+        - ReadWriteOnce
+      size: 5Gi
+      finalizers:
+        - kubernetes.io/pvc-protection
   crds:
     enabled: false
   prometheus:
