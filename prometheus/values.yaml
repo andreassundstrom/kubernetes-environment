@@ -4,3 +4,18 @@ grafana:
     tlsSecretName: grafana-tls
     service:  prometheus-grafana
 certManagerIssuer: 'letsencrypt'
+kube-prometheus-stack:
+  prometheus:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations: 
+        cert-manager.io/cluster-issuer: 'letsencrypt'
+      hosts: 
+        - prometheus.soundstream.dev
+      paths:
+        - '/'
+      tls:
+        - secretName: prometheus-soundstream-dev-tls
+          hosts:
+            - prometheus.soundstream.dev
