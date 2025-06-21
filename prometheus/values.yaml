@@ -11,11 +11,12 @@ kube-prometheus-stack:
     prometheusSpec:
       storageSpec:
         volumeClaimTemplate:
-          storageClassName: synology-iscsi-storage
-          accessModes: ['ReadWriteOnce']
-          resources:
-            requests:
-              storage: 5Gi
+          spec:
+            storageClassName: synology-iscsi-storage
+            accessModes: ['ReadWriteOnce']
+            resources:
+              requests:
+                storage: 5Gi
     ingress:
       enabled: true
       ingressClassName: nginx
