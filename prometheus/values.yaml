@@ -6,6 +6,9 @@ grafana:
 certManagerIssuer: 'letsencrypt'
 kube-prometheus-stack:
   grafana:
+    grafana.ini:
+      server:
+        root_url: "https://grafana.soundstream.dev"
     ingress:
       enabled: true
       ingressClassName: nginx
