@@ -5,6 +5,8 @@ grafana:
     service:  prometheus-grafana
 certManagerIssuer: 'letsencrypt'
 kube-prometheus-stack:
+  crds:
+    enabled: false
   prometheus:
     ingress:
       enabled: true
