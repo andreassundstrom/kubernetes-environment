@@ -9,6 +9,8 @@ kube-prometheus-stack:
     enabled: false
   prometheus:
     prometheusSpec:
+      securityContext:
+        runAsNonRoot: false
       storageSpec:
         volumeClaimTemplate:
           spec:
