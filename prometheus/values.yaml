@@ -6,6 +6,18 @@ grafana:
 certManagerIssuer: 'letsencrypt'
 kube-prometheus-stack:
   grafana:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+      hosts:
+        - grafana.soundstream.dev
+      path: /
+      tls:
+        - secretName: grafana-soundstream-dev-tls
+          hosts:
+            - grafana.soundstream.dev
     persistence:
       enabled: true
       type: sts
