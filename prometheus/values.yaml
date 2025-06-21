@@ -11,6 +11,9 @@ kube-prometheus-stack:
     prometheusSpec:
       securityContext:
         runAsNonRoot: false
+        runAsGroup: 0
+        runAsUser: 0
+        fsGroup: 0
       storageSpec:
         volumeClaimTemplate:
           spec:
