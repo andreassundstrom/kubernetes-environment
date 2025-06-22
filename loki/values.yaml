@@ -61,5 +61,7 @@ loki:
     persistence:
       # Disable use of PVC for write pods
       volumeClaimsEnabled: false
+  chunksCache:
+    allocatedMemory: 2048
   minio:
     enabled: false
