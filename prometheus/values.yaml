@@ -9,6 +9,10 @@ kube-prometheus-stack:
     grafana.ini:
       server:
         root_url: "https://grafana.soundstream.dev"
+      # Begin Override for troubleshooting
+      log:
+        level: debug
+      # End Override for troubleshooting
     ingress:
       enabled: true
       ingressClassName: nginx
