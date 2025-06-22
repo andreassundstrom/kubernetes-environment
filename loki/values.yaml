@@ -47,5 +47,8 @@ loki:
           key: connectionString
   write:
     replicas: 3
+    persistence:
+      # Disable use of PVC for write pods
+      volumeClaimsEnabled: false
   minio:
     enabled: false
