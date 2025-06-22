@@ -47,6 +47,14 @@ loki:
           key: connectionString
   write:
     replicas: 3
+    extraArgs:
+    - '-config.expand-env=true'
+    extraEnv:
+    - name: AZURE_CONNECTION_STRING
+      valueFrom:
+        secretKeyRef: 
+          name: azure-storage-secret
+          key: connectionString
     persistence:
       # Disable use of PVC for write pods
       volumeClaimsEnabled: false
