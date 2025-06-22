@@ -47,6 +47,8 @@ k8s-monitoring:
     enabled: false
 loki:
   loki:
+    image:
+      tag: 3.5.1
     schemaConfig:
       configs:
       - from: "2025-06-22"
