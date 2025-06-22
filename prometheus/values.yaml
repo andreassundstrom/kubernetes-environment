@@ -6,18 +6,9 @@ grafana:
 certManagerIssuer: 'letsencrypt'
 kube-prometheus-stack:
   grafana:
-    securityContext:
-      runAsNonRoot: false
-      runAsUser: 0
-      runAsGroup: 0
-      fsGroup: 0
     grafana.ini:
       server:
         root_url: "https://grafana.soundstream.dev"
-      # Begin Override for troubleshooting
-      log:
-        level: debug
-      # End Override for troubleshooting
     ingress:
       enabled: true
       ingressClassName: nginx
@@ -35,7 +26,7 @@ kube-prometheus-stack:
       type: sts
       storageClassName: synology-iscsi-storage
       accessModes:
-        - ReadWriteOnce
+        - ReadWriteMany
       size: 5Gi
       finalizers:
         - kubernetes.io/pvc-protection
