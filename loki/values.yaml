@@ -35,6 +35,9 @@ loki:
         secretKeyRef: 
           name: azure-storage-secret
           key: connectionString
+    persistence:
+      # Disable use of PVC for write pods
+      volumeClaimsEnabled: false
   read:
     replicas: 2
     extraArgs:
