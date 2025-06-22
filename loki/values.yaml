@@ -32,7 +32,7 @@ loki:
     extraEnv:
     - name: AZURE_CONNECTION_STRING
       valueFrom:
-        secretKeyref: 
+        secretKeyRef: 
           name: azure-storage-secret
           key: connectionString
   read:
