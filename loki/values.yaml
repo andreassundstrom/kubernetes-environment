@@ -4,7 +4,7 @@ k8s-monitoring:
   destinations:
   - name: loki
     type: loki
-    url: http://loki-gateway.meta.svc.cluster.local/loki/api/v1/push
+    url: http://loki-gateway.loki.svc.cluster.local/loki/api/v1/push
   clusterEvents:
     enabled: true
     collector: alloy-logs
