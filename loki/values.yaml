@@ -1,0 +1,40 @@
+loki:
+  loki:
+    schemaConfig:
+      configs:
+      - from: "2025-06-22"
+        store: tsdb
+        object_store: azure
+        schema: v13
+        index:
+          prefix: loki_index_
+          period: 24h
+  ingester:
+    chunk_encoding: snappy
+  tracing:
+    enabled: true
+  querier:
+    max_concurrent: 4
+  deploymentMode: SimpleScalable
+  backend:
+    replicas: 2
+    extraArgs:
+    - '-config.expand-env=true'
+    extraEnv:
+    - name: AZURE_CONNECTION_STRING
+      valueFrom:
+        secretKeyref: 
+          name: azure-storage-secret
+          key: connectionString
+  read:
+    replicas: 2
+  write:
+    replicas: 3
+  storage:
+    type: azure
+    azure:
+      connectionString: "${AZURE_CONNECTION_STRING}"
+    bucketNames:
+      chunks: "chunks"
+      ruler: "ruler"
+      admin: "admin"
