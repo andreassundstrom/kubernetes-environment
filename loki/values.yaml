@@ -37,6 +37,14 @@ loki:
           key: connectionString
   read:
     replicas: 2
+    extraArgs:
+    - '-config.expand-env=true'
+    extraEnv:
+    - name: AZURE_CONNECTION_STRING
+      valueFrom:
+        secretKeyRef: 
+          name: azure-storage-secret
+          key: connectionString
   write:
     replicas: 3
   minio:
